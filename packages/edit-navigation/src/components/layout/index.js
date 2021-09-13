@@ -132,8 +132,6 @@ export default function Layout( { blockEditorSettings } ) {
 									isMenuSelected={ isMenuSelected }
 									isPending={ ! hasLoadedMenus }
 									menus={ menus }
-									selectedMenuId={ selectedMenuId }
-									onSelectMenu={ selectMenu }
 									navigationPost={ navigationPost }
 								/>
 							}
