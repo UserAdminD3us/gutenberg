@@ -20,7 +20,14 @@ const LinkSettingsScreen = ( props ) => {
 	const { inputValue = url } = route.params || {};
 
 	const onLinkCellPressed = () => {
-		navigation.navigate( 'linkPicker', { inputValue } );
+		// TODO(David): This navigates to the new component. Need to have proper
+		// conditional and figure out how to navigate to `linkPicker` when "Custom"
+		// is selected.
+		if ( true ) {
+			navigation.navigate( 'imageOptions', { inputValue } );
+		} else {
+			navigation.navigate( 'linkPicker', { inputValue } );
+		}
 	};
 
 	return useMemo( () => {

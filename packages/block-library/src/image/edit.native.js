@@ -418,6 +418,9 @@ export class ImageEdit extends Component {
 				hasPicker
 				options={ this.linkSettingsOptions }
 				showIcon={ false }
+				// onLinkCellPressed={ () => {
+				// 	console.log( '>>> Link To' );
+				// } }
 			/>
 		);
 	}
