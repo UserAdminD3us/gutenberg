@@ -10,6 +10,8 @@
  *
  * @since 6.8.0
  *
+ * @global WP_Query $wp_query WordPress Query object.
+ *
  * @param array    $attributes Block attributes.
  * @param string   $content    Block default content.
  * @param WP_Block $block      Block instance.
@@ -40,32 +42,28 @@ function render_block_core_query_total( $attributes, $content, $block ) {
 	switch ( $attributes['displayType'] ) {
 		case 'range-display':
 			if ( $start === $end ) {
-				$range_text = sprintf(
+				$output = sprintf(
 					/* translators: 1: Start index of posts, 2: Total number of posts */
 					__( 'Displaying %1$s of %2$s' ),
-					'<strong>' . $start . '</strong>',
-					'<strong>' . $max_rows . '</strong>'
+					$start,
+					$max_rows
 				);
 			} else {
-				$range_text = sprintf(
+				$output = sprintf(
 					/* translators: 1: Start index of posts, 2: End index of posts, 3: Total number of posts */
 					__( 'Displaying %1$s – %2$s of %3$s' ),
-					'<strong>' . $start . '</strong>',
-					'<strong>' . $end . '</strong>',
-					'<strong>' . $max_rows . '</strong>'
+					$start,
+					$end,
+					$max_rows
 				);
 			}
 
-			$output = sprintf( '<p>%s</p>', $range_text );
 			break;
 
 		case 'total-results':
 		default:
-			$output = sprintf(
-				'<p><strong>%d</strong> %s</p>',
-				$max_rows,
-				_n( 'result found', 'results found', $max_rows )
-			);
+			// translators: %d: number of results.
+			$output = sprintf( _n( '%d result found', '%d results found', $max_rows ), $max_rows );
 			break;
 	}
 
