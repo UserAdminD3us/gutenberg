@@ -419,6 +419,10 @@ React component to be rendered next to the view config button.
 
 A list of numbers used to control the available item counts per page. It's optional. Defaults to `[10, 20, 50, 100]`. The list needs to have a minimum of 2 items and a maximum of 6, otherwise the UI component won't be displayed.
 
+#### `empty`: React node
+
+A message or element to be displayed instead of the dataview's default empty message.
+
 ### Composition modes
 
 The `DataViews` component supports two composition modes:

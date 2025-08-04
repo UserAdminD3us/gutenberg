@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import type { ComponentProps, ReactElement } from 'react';
+import type { ComponentProps, ReactElement, ReactNode } from 'react';
 
 /**
  * WordPress dependencies
@@ -55,6 +55,7 @@ type DataViewsContextType< Item > = {
 	isShowingFilter: boolean;
 	setIsShowingFilter: ( value: boolean ) => void;
 	perPageSizes: number[];
+	empty?: ReactNode;
 };
 
 const DataViewsContext = createContext< DataViewsContextType< any > >( {

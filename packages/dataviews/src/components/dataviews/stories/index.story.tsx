@@ -20,6 +20,7 @@ import {
 	__experimentalText as Text,
 	__experimentalHStack as HStack,
 	__experimentalVStack as VStack,
+	Button,
 } from '@wordpress/components';
 import { __, _n } from '@wordpress/i18n';
 
@@ -118,6 +119,27 @@ export const Empty = () => {
 			onChangeView={ setView }
 			actions={ actions }
 			defaultLayouts={ defaultLayouts }
+		/>
+	);
+};
+
+export const CustomEmpty = () => {
+	const [ view, setView ] = useState< View >( {
+		...DEFAULT_VIEW,
+		fields: [ 'title', 'description', 'categories' ],
+	} );
+
+	return (
+		<DataViews
+			getItemId={ ( item ) => item.id.toString() }
+			paginationInfo={ { totalItems: 0, totalPages: 0 } }
+			data={ [] }
+			view={ view }
+			fields={ fields }
+			onChangeView={ setView }
+			actions={ actions }
+			defaultLayouts={ defaultLayouts }
+			empty={ view.search ? 'No sites found' : 'No sites' }
 		/>
 	);
 };
@@ -273,6 +295,19 @@ export const FreeComposition = () => {
 					table: {},
 					grid: {},
 				} }
+				empty={
+					<VStack
+						justify="space-around"
+						alignment="center"
+						className="free-composition-dataviews-empty"
+					>
+						<Text size={ 18 } as="p">
+							No planets
+						</Text>
+						<Text variant="muted">{ `Try a different search because “${ view.search }” returned no results.` }</Text>
+						<Button variant="secondary">Create new planet</Button>
+					</VStack>
+				}
 			>
 				<PlanetOverview planets={ planets } />
 			</DataViews>
